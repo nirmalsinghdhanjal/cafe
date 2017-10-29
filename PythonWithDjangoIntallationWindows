@@ -1,0 +1,37 @@
+1.Install Python v(whatever you want to have)
+2.Run the following command:
+	python -m pip install --index-url=http://pypi.python.org/simple/ --trusted-host pypi.python.org virtualenvwrapper-win
+This will install virtualenvwrapper with the following features:
+		Make a Virtual Environment
+		Connect our project with our Environment
+		Set Project Directory
+		Deactivate
+		Workon
+		Pip Install
+		Flask!
+3.Run the following command to create a virtual env with your fav python version:
+	python -m virtualenv -p C:\Users\nirmalsingh\AppData\Local\Programs\Python\Python36\python.exe C:\venvs\3.6
+Following is the output of the above command which created a virtual environment in venvs\3.6	
+			Already using interpreter C:\Users\nirmalsingh\AppData\Local\Programs\Python\Pyt
+			hon36\python.exe
+			Using base prefix 'C:\\Users\\nirmalsingh\\AppData\\Local\\Programs\\Python\\Pyt
+			hon36'
+			New python executable in C:\venvs\3.6\Scripts\python.exe
+			Installing setuptools, pip, wheel...done.
+4. Go to C:\venvs\3.6\Scripts> and run "activate"
+	C:\venvs\3.6\Scripts>activate
+
+5. Go to any work directory from where you want to start doing stuff and run the following command:
+	(3.6) C:\Work>setprojectdir .
+
+		"C:\Work" is now the project directory for
+		virtualenv "C:\venvs\3.6"
+
+		"C:\Work" added to
+		C:\venvs\3.6\Lib\site-packages\virtualenv_path_extensions.pth
+
+6. deactivate the path by running deactivate command
+
+7. Go to the env directory and run the following command:
+	python -m pip install django
+This will install django on the virtual env and then you are ready to go
