@@ -1,0 +1,116 @@
+1.Install Python v(whatever you want to have)
+2.Run the following command:
+	python -m pip install --index-url=http://pypi.python.org/simple/ --trusted-host pypi.python.org virtualenvwrapper-win
+This will install virtualenvwrapper with the following features:
+		Make a Virtual Environment
+		Connect our project with our Environment
+		Set Project Directory
+		Deactivate
+		Workon
+		Pip Install
+		Flask!
+3.Run the following command to create a virtual env with your fav python version:
+	python -m virtualenv -p C:\Users\nirmalsingh\AppData\Local\Programs\Python\Python36\python.exe C:\venvs\3.6
+Following is the output of the above command which created a virtual environment in venvs\3.6	
+			Already using interpreter C:\Users\nirmalsingh\AppData\Local\Programs\Python\Pyt
+			hon36\python.exe
+			Using base prefix 'C:\\Users\\nirmalsingh\\AppData\\Local\\Programs\\Python\\Pyt
+			hon36'
+			New python executable in C:\venvs\3.6\Scripts\python.exe
+			Installing setuptools, pip, wheel...done.
+4. Go to C:\venvs\3.6\Scripts> and run "activate"
+	C:\venvs\3.6\Scripts>activate
+
+5. Go to any work directory from where you want to start doing stuff and run the following command:
+	(3.6) C:\Work>setprojectdir .
+
+		"C:\Work" is now the project directory for
+		virtualenv "C:\venvs\3.6"
+
+		"C:\Work" added to
+		C:\venvs\3.6\Lib\site-packages\virtualenv_path_extensions.pth
+
+6. deactivate the path by running deactivate command
+
+7. Go to the env directory and run the following command:
+	python -m pip install django
+This will install django on the virtual env and then you are ready to go
+
+Postgres:
+Installation Directory: C:\Program Files\PostgreSQL\10
+Server Installation Directory: C:\Program Files\PostgreSQL\10
+Data Directory: C:\Program Files\PostgreSQL\10\data
+Database Port: 5432
+Database Superuser: postgres
+Operating System Account: NT AUTHORITY\NetworkService
+Database Service: postgresql-x64-10
+Command Line Tools Installation Directory: C:\Program Files\PostgreSQL\10
+pgAdmin4 Installation Directory: C:\Program Files\PostgreSQL\10\pgAdmin 4
+Stack Builder Installation Directory: C:\Program Files\PostgreSQL\10
+
+
+==============================Installing the driver for using postgres with django============================================
+
+To start following the steps below, create a database on postgres ( i have created a db called "test" in this example).
+
+Download the relevant driver file from the following path for installing "psycopg2"
+https://pypi.python.org/pypi/psycopg2
+
+For a 64 bit system with python 3.6, the best file is psycopg2-2.7.3.2-cp36-cp36m-win_amd64.whl
+
+Once that is downloaded
+
+1. activate the virtual environment
+	C:\venvs\3.6\Scripts>activate
+
+2. run the following command 
+	(3.6) C:\Work>pip install psycopg2-2.7.3.2-cp36-cp36m-win_amd64.whl
+			Processing c:\work\psycopg2-2.7.3.2-cp36-cp36m-win_amd64.whl
+			Installing collected packages: psycopg2
+				  Successfully uninstalled psycopg2-2.6.2
+			Successfully installed psycopg2-2.7.3.2
+3. In the Django project directory, locate settings.py and make the following modifications in the database section:
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'test',
+        'USER': 'postgres',
+        'PASSWORD': 'tool',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
+Note : "test" here is the database that you will have to create before hand
+
+4. To check is everything works fine, run the following command:
+
+(3.6) C:\Work\mysite>python manage.py check
+System check identified no issues (0 silenced).
+
+If you get an error, google the shit out of it and solve
+
+5. Run the command to migrate the files to postgres:
+
+	(3.6) C:\Work\mysite>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying sessions.0001_initial... OK
+
+ 6. Run the django server to check if everything is fine.
+
+
